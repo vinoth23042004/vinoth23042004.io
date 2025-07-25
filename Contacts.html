@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Vinoth Kumar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            transform: translateY(-85px);
+            
+        }
+        .contact-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+         
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2B4C3F;
+            margin-left: 150px; /* adjust value as needed */
+            
+        }
+        .section-title span {
+            color: #FFA500;
+        }
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        /* Contact Info */
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateX(60px) translateY(-30px) scale(0.9);
+
+        }
+        .contact-info h3 {
+            color: #2B4C3F;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .contact-item:hover {
+            transform: translateY(-2px);
+        }
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: #2B4C3F;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        .contact-details h4 {
+            color: #2B4C3F;
+            margin-bottom: 0.5rem;
+        }
+        .contact-details p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: #2B4C3F;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        .social-link:hover {
+            background: #FFA500;
+        }
+        /* Chatbot Container */
+        .chatbot-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .chatbot-intro {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+      
+
+        .chat-features {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .feature-tag {
+            background: #2B4C3F;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        
+        /* Enhanced iPhone Design */
+        .phone {
+            width: 300px;
+            height: 600px;
+            background-color: #000;
+            border-radius: 40px;
+            padding: 8px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            transform: translateY(-10px);
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            border-radius: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* iPhone Hardware Details */
+        .notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background-color: #000;
+            border-radius: 0 0 15px 15px;
+            z-index: 15;
+        }
+
+        .power-button {
+            position: absolute;
+            right: -4px;
+            top: 180px;
+            width: 4px;
+            height: 80px;
+            background-color: #333;
+            border-radius: 2px;
+        }
+
+        .volume-button-up {
+            position: absolute;
+            left: -4px;
+            top: 150px;
+            width: 4px;
+            height: 50px;
+            background-color: #333;
+            border-radius: 2px;
+        }
+
+        .volume-button-down {
+            position: absolute;
+            left: -4px;
+            top: 210px;
+            width: 4px;
+            height: 50px;
+            background-color: #333;
+            border-radius: 2px;
+        }
+
+        .mute-switch {
+            position: absolute;
+            left: -3px;
+            top: 120px;
+            width: 3px;
+            height: 20px;
+            background-color: #333;
+            border-radius: 1px;
+        }
+
+        /* Phone Header */
+        .phone-header {
+            background: linear-gradient(135deg, #2B4C3F, #1a3329);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            color: white;
+            position: relative;
+            margin-top: 10px; /* Account for notch */
+            
+z-index: 1;
+
+        }
+
+
+
+
+
+        .phone-header::before {
+    content: "";
+    position: absolute;
+    top: -20px; /* increase this to stretch background upward */
+    left: 0;
+    right: 0;
+    height: 80px; /* total background height = 60 + 20 */
+    background: linear-gradient(135deg, #2B4C3F, #1a3329);
+    z-index: -1; /* place it behind the header */
+    border-radius: inherit; /* optional, if header is rounded */
+}
+
+
+
+
+
+
+
+
+
+
+
+        .status-bar {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            font-size: 12px;
+            color: #ccc;
+        }
+        .connection-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+        .connection-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #51cf66;
+            animation: none;
+        }
+        .contact-info-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        .avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #FFA500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .contact-details-header h3 {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+        .contact-details-header p {
+            font-size: 12px;
+            color: #ccc;
+        }
+        /* Chat Area */
+        .chat-container {
+            height: calc(100% - 90px); /* Account for notch and header */
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease-in;
+        }
+        .message.user {
+            align-self: flex-end;
+            background: #2B4C3F;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+        .message.bot {
+            align-self: flex-start;
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            border-bottom-left-radius: 5px;
+        }
+        .typing-indicator {
+            align-self: flex-start;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 18px;
+            padding: 12px 16px;
+            display: none;
+        }
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        /* Input Area */
+        .input-container {
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid #e0e0e0;
+            transform: translateY(20px);
+            
+            
+        }
+        .input-field {
+            flex: 1;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 10px 15px;
+            outline: none;
+            font-size: 14px;
+        }
+        .input-field:focus {
+            border-color: #2B4C3F;
+        }
+        .send-button {
+            width: 50px;
+            height: 30px;
+            border-radius: 50%;
+            background: #2B4C3F;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        .send-button:hover {
+            background: #1a3329;
+        }
+        .send-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        /* Scrollbar */
+        .chat-messages::-webkit-scrollbar {
+            width: 4px;
+        }
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 2px;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .phone {
+                width: 100%;
+                max-width: 300px;
+                height: 600px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .contact-section {
+                padding: 60px 15px;
+            }
+            .chat-features {
+                gap: 0.5rem;
+            }
+            .feature-tag {
+                font-size: 0.7rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .phone {
+                height: 500px;
+            }
+            .contact-info {
+                padding: 1.5rem;
+            }
+            .contact-item {
+                padding: 0.8rem;
+            }
+        }
+
+
+
+    
+
+      
+
+
+
+    </style>
+</head>
+<body>
+    <section class="contact-section">
+        <h2 class="section-title" style="transform: translateY(30px);">Get In <span>Touch</span></h2>
+        
+        <div class="contact-container">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h3>Let's Connect!</h3>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p>vinothkumar23.04.2004@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <h4>Phone</h4>
+                        <p>+91 63824 13558</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
+                        <p>Coimbatore, Tamil Nadu, India</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">💼</div>
+                    <div class="contact-details">
+                        <h4>Available For</h4>
+                        <p>AI/ML Projects, Internship, Full-time Opportunities</p>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/vinothkumaraiml/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">💼</a>
+                    <a href="https://github.com/vinoth23042004" class="social-link" title="GitHub" target="_blank" rel="noopener noreferrer">💻</a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vinothkumar23.04.2004@gmail.com" class="social-link" title="Email" target="_blank" rel="noopener noreferrer">📧</a>
+                    <a href="https://www.instagram.com/vinoth_kumar1212/" class="social-link" title="Instagram" target="_blank" rel="noopener noreferrer">🌐</a>
+                </div>
+            </div>
+
+            <!-- Enhanced iPhone-Style Chat Interface -->
+            <div class="chatbot-container">
+                <div class="phone" style="transform: translateY(-60px);">
+                    <!-- iPhone Hardware Elements -->
+                    <div class="notch"></div>
+                    <div class="power-button"></div>
+                    <div class="volume-button-up"></div>
+                    <div class="volume-button-down"></div>
+                    <div class="mute-switch"></div>
+                    
+                    <div class="phone-screen">
+                        <!-- Phone Header -->
+                        <div class="phone-header">
+                            <div class="status-bar">
+                                <span></span>
+                                <div class="connection-indicator">
+                                    <div class="connection-dot" id="connectionDot"></div>
+                                    <span id="connectionStatus">Ready</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-header">
+                                <div class="avatar">VK</div>
+                                <div class="contact-details-header">
+                                    <h3>Vinoth Kumar</h3>
+                                    <p id="botStatus">AI Assistant - Offline Mode</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chat Container -->
+                        <div class="chat-container">
+                            <div class="chat-messages" id="chatMessages">
+                                <div class="message bot">
+                                    👋 Hi! I'm Vinoth's AI assistant. I can answer questions about his skills, experience, projects, and background. What would you like to know?
+                                </div>
+                            </div>
+                            
+                            <div class="typing-indicator" id="typingIndicator">
+                                <div class="typing-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+
+                            <!-- Input Area -->
+                            <div class="input-container">
+                                <input 
+                                    type="text" 
+                                    class="input-field" 
+                                    id="messageInput" 
+                                    placeholder="Ask about Vinoth's experience..."
+                                >
+                                <button class="send-button" id="sendButton">
+                                    ➤
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+   
+
+    </section>
+
+    <script>
+        class OfflinePortfolioChatbot {
+            constructor() {
+                this.isTyping = false;
+                
+                // Comprehensive knowledge base about Vinoth Kumar
+                this.knowledgeBase = {
+                    // Personal Information
+                    personal: {
+                        name: "Vinoth Kumar",
+                        location: "Coimbatore, Tamil Nadu, India",
+                        email: "vinothkumar@example.com",
+                        phone: "+91 12345 67890",
+                        title: "AI/ML Engineer",
+                        experience: "3+ years",
+                        availability: "Available for AI/ML projects, freelance work, and full-time opportunities"
+                    },
+                    
+                    // Skills and Technologies
+                    skills: {
+                        machine_learning: [
+                            "Supervised Learning", "Unsupervised Learning", "Semi-supervised Learning",
+                            "Feature Engineering", "Model Selection", "Cross-validation",
+                            "Hyperparameter Tuning", "Ensemble Methods", "Dimensionality Reduction"
+                        ],
+                        deep_learning: [
+                            "Neural Networks", "Convolutional Neural Networks (CNNs)",
+                            "Recurrent Neural Networks (RNNs)", "Long Short-Term Memory (LSTM)",
+                            "Transformer Architecture", "GANs", "Autoencoders"
+                        ],
+                        programming: [
+                            "Python", "R", "SQL", "JavaScript", "Java", "C++", "MATLAB"
+                        ],
+                        frameworks: [
+                            "TensorFlow", "PyTorch", "Keras", "Scikit-learn", "XGBoost",
+                            "LightGBM", "OpenCV", "NLTK", "spaCy", "Hugging Face"
+                        ],
+                        data_science: [
+                            "Data Analysis", "Data Visualization", "Statistical Modeling",
+                            "A/B Testing", "Time Series Analysis", "Exploratory Data Analysis"
+                        ],
+                        cloud_platforms: [
+                            "AWS (Amazon Web Services)", "Google Cloud Platform", "Microsoft Azure",
+                            "IBM Watson", "Databricks"
+                        ],
+                        tools: [
+                            "Jupyter Notebook", "Git/GitHub", "Docker", "Kubernetes",
+                            "MongoDB", "PostgreSQL", "Tableau", "Power BI", "Apache Spark"
+                        ]
+                    },
+                    
+                    // Projects Portfolio
+                    projects: [
+                        {
+                            title: "Predictive Analytics System",
+                            description: "Built comprehensive ML models for business forecasting and trend analysis",
+                            technologies: ["Python", "Scikit-learn", "Pandas", "XGBoost"],
+                            outcomes: ["Improved forecast accuracy by 35%", "Reduced decision-making time by 50%"],
+                            type: "Machine Learning"
+                        },
+                        {
+                            title: "Computer Vision Application",
+                            description: "Developed advanced image classification and object detection system",
+                            technologies: ["Python", "TensorFlow", "OpenCV", "CNN"],
+                            outcomes: ["Achieved 94% accuracy", "Processed 1000+ images per minute"],
+                            type: "Deep Learning"
+                        },
+                        {
+                            title: "NLP Chatbot Platform",
+                            description: "Created conversational AI for customer service automation",
+                            technologies: ["Python", "NLTK", "Transformers", "Flask"],
+                            outcomes: ["Reduced response time by 80%", "Handled 500+ queries daily"],
+                            type: "Natural Language Processing"
+                        },
+                        {
+                            title: "Recommendation Engine",
+                            description: "Built personalized recommendation system for e-commerce platform",
+                            technologies: ["Python", "Collaborative Filtering", "Deep Learning"],
+                            outcomes: ["Increased user engagement by 45%", "Boosted sales by 25%"],
+                            type: "Recommendation Systems"
+                        },
+                        {
+                            title: "Time Series Forecasting",
+                            description: "Developed predictive models for financial data and market trends",
+                            technologies: ["Python", "LSTM", "ARIMA", "Prophet"],
+                            outcomes: ["Achieved 92% prediction accuracy", "Optimized trading strategies"],
+                            type: "Time Series Analysis"
+                        },
+                        {
+                            title: "Fraud Detection System",
+                            description: "Implemented real-time fraud detection using anomaly detection",
+                            technologies: ["Python", "Isolation Forest", "Neural Networks"],
+                            outcomes: ["Detected 98% of fraudulent transactions", "Reduced false positives by 60%"],
+                            type: "Anomaly Detection"
+                        }
+                    ],
+                    
+                    // Achievements and Statistics
+                    achievements: [
+                        "Successfully completed 15+ AI/ML projects",
+                        "Improved model accuracy by 25% on average across projects",
+                        "Reduced processing time by 40% through optimization techniques",
+                        "Published research papers in AI conferences",
+                        "Mentored junior developers in ML practices",
+                        "Contributed to open-source ML libraries"
+                    ],
+                    
+                    // Education and Certifications
+                    education: {
+                        degree: "Bachelor's in Computer Science Engineering",
+                        certifications: [
+                            "AWS Certified Machine Learning Specialist",
+                            "Google Cloud Professional Data Engineer",
+                            "TensorFlow Developer Certificate",
+                            "Microsoft Azure AI Engineer"
+                        ]
+                    },
+                    
+                    // Work Experience
+                    experience: [
+                        {
+                            role: "Senior AI/ML Engineer",
+                            company: "Tech Solutions Inc.",
+                            duration: "2022 - Present",
+                            responsibilities: [
+                                "Lead AI/ML projects from conception to deployment",
+                                "Mentor junior team members",
+                                "Collaborate with cross-functional teams"
+                            ]
+                        },
+                        {
+                            role: "ML Engineer",
+                            company: "Data Analytics Corp.",
+                            duration: "2021 - 2022",
+                            responsibilities: [
+                                "Developed and deployed ML models",
+                                "Optimized model performance",
+                                "Created data pipelines"
+                            ]
+                        }
+                    ]
+                };
+                
+                // Intent patterns for better response matching
+                this.intentPatterns = {
+                    greeting: [
+                        "hi", "hello", "hey", "good morning", "good afternoon", "good evening"
+                    ],
+                    skills: [
+                        "skills", "technologies", "programming", "languages", "frameworks",
+                        "tools", "expertise", "proficient", "experience with"
+                    ],
+                    projects: [
+                        "projects", "work", "portfolio", "built", "developed", "created",
+                        "examples", "showcase", "achievements"
+                    ],
+                    experience: [
+                        "experience", "years", "career", "background", "history",
+                        "worked", "professional", "job"
+                    ],
+                    contact: [
+                        "contact", "email", "phone", "reach", "location", "address",
+                        "hire", "available", "availability"
+                    ],
+                    education: [
+                        "education", "degree", "qualification", "certification",
+                        "study", "university", "college"
+                    ],
+                    specific_tech: [
+                        "python", "tensorflow", "pytorch", "machine learning", "deep learning",
+                        "ai", "artificial intelligence", "data science", "nlp", "computer vision"
+                    ]
+                };
+                
+                this.initializeElements();
+                this.setupEventListeners();
+            }
+
+            initializeElements() {
+                this.elements = {
+                    messageInput: document.getElementById('messageInput'),
+                    sendButton: document.getElementById('sendButton'),
+                    chatMessages: document.getElementById('chatMessages'),
+                    typingIndicator: document.getElementById('typingIndicator'),
+                    connectionStatus: document.getElementById('connectionStatus')
+                };
+            }
+
+            setupEventListeners() {
+                this.elements.sendButton.addEventListener('click', () => this.sendMessage());
+                
+                this.elements.messageInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.sendMessage();
+                    }
+                });
+            }
+
+            async sendMessage() {
+                const message = this.elements.messageInput.value.trim();
+                if (!message || this.isTyping) return;
+
+                this.addMessage(message, 'user');
+                this.elements.messageInput.value = '';
+                this.showTypingIndicator();
+                
+                // Simulate realistic AI response time
+                const responseTime = Math.random() * 1500 + 500; // 0.5-2 seconds
+                
+                setTimeout(() => {
+                    const response = this.generateResponse(message);
+                    this.hideTypingIndicator();
+                    this.addMessage(response, 'bot');
+                }, responseTime);
+            }
+
+            generateResponse(userMessage) {
+                const message = userMessage.toLowerCase();
+                const intent = this.detectIntent(message);
+                
+                switch (intent) {
+                    case 'greeting':
+                        return this.getGreetingResponse();
+                    
+                    case 'skills':
+                        return this.getSkillsResponse(message);
+                    
+                    case 'projects':
+                        return this.getProjectsResponse(message);
+                    
+                    case 'experience':
+                        return this.getExperienceResponse();
+                    
+                    case 'contact':
+                        return this.getContactResponse();
+                    
+                    case 'education':
+                        return this.getEducationResponse();
+                    
+                    case 'specific_tech':
+                        return this.getSpecificTechResponse(message);
+                    
+                    default:
+                        return this.getDefaultResponse(message);
+                }
+            }
+
+            detectIntent(message) {
+                let maxMatches = 0;
+                let detectedIntent = 'default';
+                
+                for (const [intent, patterns] of Object.entries(this.intentPatterns)) {
+                    let matches = 0;
+                    patterns.forEach(pattern => {
+                        if (message.includes(pattern)) {
+                            matches++;
+                        }
+                    });
+                    
+                    if (matches > maxMatches) {
+                        maxMatches = matches;
+                        detectedIntent = intent;
+                    }
+                }
+                
+                return detectedIntent;
+            }
+
+            getGreetingResponse() {
+                const greetings = [
+                    "👋 Hello! I'm Vinoth's AI assistant. How can I help you learn about his expertise?",
+                    "🙋‍♂️ Hi there! Feel free to ask me about Vinoth's skills, projects, or experience!",
+                    "✨ Greetings! I'm here to share information about Vinoth Kumar. What interests you?",
+                    "🚀 Hey! Ready to explore Vinoth's AI/ML expertise? What would you like to know?"
+                ];
+                return greetings[Math.floor(Math.random() * greetings.length)];
+            }
+
+            getSkillsResponse(message) {
+                const kb = this.knowledgeBase;
+                
+                if (message.includes('programming') || message.includes('language')) {
+                    return `💻 **Programming Languages:**\n${kb.skills.programming.slice(0, 5).join(', ')}\n\nVinoth is proficient in multiple programming languages with strong expertise in Python for ML/AI development.`;
+                }
+                
+                if (message.includes('framework')) {
+                    return `🛠️ **Frameworks & Libraries:**\n${kb.skills.frameworks.slice(0, 6).join(', ')}\n\nSpecializes in TensorFlow and PyTorch for deep learning projects.`;
+                }
+                
+                if (message.includes('machine learning') || message.includes('ml')) {
+                    return `🤖 **Machine Learning Skills:**\n${kb.skills.machine_learning.slice(0, 6).join(', ')}\n\nExpert in both supervised and unsupervised learning with 3+ years of hands-on experience.`;
+                }
+                
+                // General skills overview
+                return `🎯 **Core Expertise Areas:**\n\n🔹 **AI/ML:** ${kb.skills.machine_learning.slice(0, 3).join(', ')}\n🔹 **Programming:** ${kb.skills.programming.slice(0, 3).join(', ')}\n🔹 **Frameworks:** ${kb.skills.frameworks.slice(0, 3).join(', ')}\n🔹 **Cloud:** ${kb.skills.cloud_platforms.join(', ')}\n\nVinoth has ${kb.personal.experience} of experience in AI/ML development!`;
+            }
+
+            getProjectsResponse(message) {
+                const projects = this.knowledgeBase.projects;
+                
+                if (message.includes('computer vision') || message.includes('image')) {
+                    const project = projects.find(p => p.type === 'Deep Learning');
+                    return `📸 **${project.title}:**\n${project.description}\n\n**Tech Stack:** ${project.technologies.join(', ')}\n**Results:** ${project.outcomes.join(', ')}`;
+                }
+                
+                if (message.includes('nlp') || message.includes('chatbot') || message.includes('language')) {
+                    const project = projects.find(p => p.type === 'Natural Language Processing');
+                    return `💬 **${project.title}:**\n${project.description}\n\n**Tech Stack:** ${project.technologies.join(', ')}\n**Results:** ${project.outcomes.join(', ')}`;
+                }
+                
+                if (message.includes('recommendation')) {
+                    const project = projects.find(p => p.type === 'Recommendation Systems');
+                    return `🎯 **${project.title}:**\n${project.description}\n\n**Tech Stack:** ${project.technologies.join(', ')}\n**Results:** ${project.outcomes.join(', ')}`;
+                }
+
+                
+                // General projects overview
+                const featuredProjects = projects.slice(0, 3);
+                let response = "🚀 **Featured Projects:**\n\n";
+                featuredProjects.forEach((project, index) => {
+                    response += `${index + 1}. **${project.title}** (${project.type})\n   ${project.description}\n\n`;
+                });
+                response += `Total: ${projects.length} completed projects with proven results!`;
+                return response;
+            }
+
+            getExperienceResponse() {
+                const kb = this.knowledgeBase;
+                const experience = kb.experience;
+                
+                let response = `💼 **Professional Experience:**\n\n`;
+                
+                experience.forEach((job, index) => {
+                    response += `**${job.role}** at ${job.company}\n`;
+                    response += `📅 ${job.duration}\n`;
+                    response += `• ${job.responsibilities.join('\n• ')}\n\n`;
+                });
+                
+                response += `🏆 **Key Achievements:**\n`;
+                response += kb.achievements.slice(0, 3).map(achievement => `• ${achievement}`).join('\n');
+                
+                return response;
+            }
+
+            getContactResponse() {
+                const contact = this.knowledgeBase.personal;
+                return `📞 **Contact Information:**\n\n` +
+                       `📧 **Email:** ${contact.email}\n` +
+                       `📱 **Phone:** ${contact.phone}\n` +
+                       `📍 **Location:** ${contact.location}\n` +
+                       `💼 **Availability:** ${contact.availability}\n\n` +
+                       `Feel free to reach out for AI/ML projects or collaboration opportunities!`;
+            }
+
+            getEducationResponse() {
+                const edu = this.knowledgeBase.education;
+                return `🎓 **Education & Certifications:**\n\n` +
+                       `**Degree:** ${edu.degree}\n\n` +
+                       `**Professional Certifications:**\n` +
+                       edu.certifications.map(cert => `• ${cert}`).join('\n') +
+                       `\n\nContinuous learner staying updated with latest AI/ML trends!`;
+            }
+
+            getSpecificTechResponse(message) {
+                const kb = this.knowledgeBase;
+                
+                if (message.includes('python')) {
+                    return `🐍 **Python Expertise:**\nVinoth is highly proficient in Python with extensive experience in:\n• Data Science libraries (Pandas, NumPy, SciPy)\n• ML frameworks (Scikit-learn, XGBoost)\n• Deep Learning (TensorFlow, PyTorch)\n• Web development (Flask, FastAPI)\n\nPython is his primary language for AI/ML development!`;
+                }
+                
+                if (message.includes('tensorflow') || message.includes('pytorch')) {
+                    return `🧠 **Deep Learning Frameworks:**\n• **TensorFlow:** Advanced neural networks, production deployment\n• **PyTorch:** Research, prototyping, custom architectures\n• **Keras:** Rapid prototyping and experimentation\n\nExperienced in both frameworks for different project requirements!`;
+                }
+                
+                if (message.includes('machine learning') || message.includes('ml')) {
+                    return `🤖 **Machine Learning Expertise:**\n\n**Algorithms:** ${kb.skills.machine_learning.slice(0, 4).join(', ')}\n**Applications:** Predictive analytics, classification, clustering\n**Experience:** ${kb.personal.experience} with proven track record\n\nSpecializes in end-to-end ML pipeline development!`;
+                }
+                
+                if (message.includes('deep learning') || message.includes('neural')) {
+                    return `🧠 **Deep Learning Specialization:**\n\n**Architectures:** ${kb.skills.deep_learning.slice(0, 4).join(', ')}\n**Applications:** Computer vision, NLP, time series\n**Frameworks:** TensorFlow, PyTorch, Keras\n\nBuilt production-ready deep learning solutions!`;
+                }
+                
+                return this.getDefaultResponse(message);
+            }
+
+            getDefaultResponse(message) {
+                // Try to find relevant information based on keywords
+                if (message.includes('salary') || message.includes('rate')) {
+                    return "💼 For salary discussions and project rates, please contact Vinoth directly via email or phone. Rates are competitive and depend on project scope and requirements.";
+                }
+                
+                if (message.includes('location') || message.includes('remote')) {
+                    return `📍 Vinoth is based in ${this.knowledgeBase.personal.location} and is open to both remote and on-site opportunities. Available for global remote collaborations!`;
+                }
+                
+                if (message.includes('time') || message.includes('availability')) {
+                    return `⏰ Vinoth is currently ${this.knowledgeBase.personal.availability.toLowerCase()}. Response time is typically within 24 hours for project inquiries.`;
+                }
+                
+                // Fallback responses
+                const fallbacks = [
+                    "🤔 I'd be happy to help! Could you ask about Vinoth's skills, projects, experience, or contact information?",
+                    "💡 Try asking about:\n• Technical skills & expertise\n• Project portfolio & achievements\n• Professional experience\n• Contact information\n• Education & certifications",
+                    "🎯 I can share details about Vinoth's AI/ML expertise, projects, or professional background. What specific area interests you?",
+                    "🚀 Let me help you learn about Vinoth Kumar! Ask me about his skills, projects, experience, or how to get in touch."
+                ];
+                
+                return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+            }
+
+            addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}`;
+                
+                // Format message with basic markdown-style formatting
+                const formattedText = this.formatMessage(text);
+                messageDiv.innerHTML = formattedText;
+                
+                this.elements.chatMessages.appendChild(messageDiv);
+                this.scrollToBottom();
+            }
+
+            formatMessage(text) {
+                // Simple formatting for better readability
+                return text
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
+                    .replace(/\n/g, '<br>') // Line breaks
+                    .replace(/•/g, '•') // Bullet points
+                    .replace(/📧|📱|📍|💼|🎓|🤖|🧠|💻|🛠️|🎯|🚀|📞|⏰|💡|🔹|📅|🏆|🐍|📸|💬/g, '<span style="font-size: 1.1em;">$&</span>'); // Emoji styling
+            }
+
+            showTypingIndicator() {
+                this.isTyping = true;
+                this.elements.typingIndicator.style.display = 'block';
+                this.elements.sendButton.disabled = true;
+                this.scrollToBottom();
+            }
+
+            hideTypingIndicator() {
+                this.isTyping = false;
+                this.elements.typingIndicator.style.display = 'none';
+                this.elements.sendButton.disabled = false;
+            }
+
+            scrollToBottom() {
+                setTimeout(() => {
+                    this.elements.chatMessages.scrollTop = this.elements.chatMessages.scrollHeight;
+                }, 100);
+            }
+        }
+
+        // Initialize the chatbot when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatbot = new OfflinePortfolioChatbot();
+            
+            // Update connection status
+            document.getElementById('connectionStatus').textContent = 'Online';
+            document.getElementById('connectionDot').style.background = '#51cf66';
+            document.getElementById('botStatus').textContent = 'AI Assistant - Online';
+            
+            // Add some interactive features
+            const messageInput = document.getElementById('messageInput');
+            
+            // Placeholder rotation for better UX
+            const placeholders = [
+                "Ask about Vinoth's experience...",
+                "What technologies does he use?",
+                "Tell me about his projects...",
+                "How can I contact him?",
+                "What are his skills?"
+            ];
+            
+            let placeholderIndex = 0;
+            setInterval(() => {
+                if (!messageInput.value) {
+                    messageInput.placeholder = placeholders[placeholderIndex];
+                    placeholderIndex = (placeholderIndex + 1) % placeholders.length;
+                }
+            }, 3000);
+            
+            // Add welcome message after a short delay
+            setTimeout(() => {
+                const welcomeMessages = [
+                    
+                    "Feel free to ask about his skills, projects, experience, or contact information!",
+                   
+                ];
+                
+                welcomeMessages.forEach((msg, index) => {
+                    setTimeout(() => {
+                        chatbot.addMessage(msg, 'bot');
+                    }, (index + 1) * 1000);
+                });
+            }, 1000);
+        });
+
+        // Add some visual enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate contact info cards on load
+            const contactItems = document.querySelectorAll('.contact-item');
+            contactItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.animation = 'fadeIn 0.6s ease-out forwards';
+                }, index * 200);
+            });
+            
+            // Add hover effects to social links
+            const socialLinks = document.querySelectorAll('.social-link');
+            socialLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1) rotate(5deg)';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                });
+            });
+            
+            
+            
+            phone.addEventListener('mouseleave', function() {
+                isHovering = false;
+                this.style.transform = 'translateY(-10px) scale(1)';
+            });
+        });
+
+
+        
+    </script>
+</body>
+</html>

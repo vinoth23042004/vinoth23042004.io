@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Achievements - Infinite Marquee</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            scroll-behavior: smooth;
+            background: #f4f4f4;
+            overflow-x: hidden;
+            max-width: 70vw;
+            margin: 0 auto;
+        }
+
+        
+
+        #hackathon-achievements {
+            background-image: url('r.webp');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 50px 0;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            /* Override body width constraint for this section */
+            width: 80vw;
+            margin: 0 auto;
+            transform: translateX(-210px) translateY(-20px);
+        }
+
+        .hackathon-container h2 {
+            margin-bottom: 30px;
+            font-size: 36px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #F1C40F;
+            padding: 0 20px;
+        }
+
+        .marquee-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding-top: 50px; /* ✅ creates space above */
+            overflow: visible; /* If overflow:hidden is clipping your animation */
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 60s linear infinite;
+            width: fit-content;
+        }
+
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .achievement {
+            background-color: #66ff00a6;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-right: 40px;
+            width: 45vw;
+            min-width: 380px;
+            max-width: 480px;
+            flex-shrink: 0;
+            backdrop-filter: blur(10px);
+            border: 1.5px solid #2B4C3F;
+        }
+
+        .achievement:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background-color: #00e1ff;
+        }
+
+        .achievement img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+            background-color: #f8f9fa;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .achievement:hover img {
+            transform: scale(1.05);
+        }
+
+        .achievement p {
+            margin: 5px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.4;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Gradient overlay for better text readability */
+        .achievement::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(241, 196, 15, 0.1), rgba(10, 171, 181, 0.1));
+            border-radius: 15px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .achievement:hover::before {
+            opacity: 1;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                max-width: 100vw;
+            }
+            
+            #hackathon-achievements {
+                margin-left: 0;
+                width: 100vw;
+            }
+            
+            .achievement {
+                width: 85vw;
+                min-width: 280px;
+                max-width: 350px;
+                padding: 15px;
+                margin-right: 30px;
+            }
+            
+            .achievement img {
+                height: 180px;
+            }
+            
+            .achievement p {
+                font-size: 14px;
+                min-height: 40px;
+            }
+            
+            .hackathon-container h2 {
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+
+            }
+     
+        h1 span {
+         color: #00e1ff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+        
+        h1 span {
+            color: #00e1ff;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="transform: translateX(-430px) translateY(90px)">My <span>Achievements</span></h1>
+
+    <section id="hackathon-achievements">
+        <div class="hackathon-container">
+           
+            <div class="marquee-wrapper">
+                <div class="marquee-content">
+                    <!-- First set of achievements -->
+                    <div class="achievement">
+                        <img src="Achievement_1.jpeg" alt="Achievement 1">
+                        <p>Received 2nd prize in a 24hr Hackathon conducted by King’s College, Chennai</p>
+                    </div>
+                    <div class="achievement">
+                        <img src="Achievement_2.jpg" alt="Achievement 2">
+                        <p>Top 5 ranking at Nexus Hackathon, Coimbatore Institute of Technology</p>
+                    </div>
+                    <div class="achievement">
+                        <img src="Achievement_3.jpeg" alt="Achievement 3">
+                        <p>Received 2nd prize in project presentation, Karpagam Institute of Technology</p>
+                    </div>
+                    <div class="achievement">
+                        <img src="Achievement_4.jpg" alt="Achievement 4">
+                        <p>Received Special Mention prize at Bannari Amman Institute of Technology</p>
+                    </div>
+                    
+                    
+                    <!-- Duplicate set for seamless infinite loop -->
+                    <div class="achievement">
+                        <img src="Achievement_1.jpeg" alt="Achievement 1">
+                        <p>Received 2nd prize in a 24hr Hackathon conducted by King's College, Chennai</p>
+                    </div>
+                    <div class="achievement">
+                        <img src="Achievement_2.jpg" alt="Achievement 2">
+                        <p>Top 5 ranking at Nexus Hackathon, Coimbatore Institute of Technology</p>
+                    </div>
+                    <div class="achievement">
+                        <img src="Achievement_3.jpeg" alt="Achievement 3">
+                        <p>Received 2nd prize in project presentation, Karpagam Institute of Technology n</p>
+                    </div>
+                    <div class="achievement">
+                        <img src="Achievement_4.jpg" alt="Achievement 4">
+                        <p>Received Special Mention prize at Bannari Amman Institute of Technology</p>
+                    </div>
+               
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+</body>
+</html>

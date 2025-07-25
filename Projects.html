@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Section - Perfect Smooth Scrolling</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            padding: 60px 20px;
+            transform: translateX(-10px) translateY(-120px) scale(0.75); /* Left and right  & Up and down*/ /* Scales to 80% of original size */
+        }
+
+        .projects-section {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 50px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .projects-container {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding: 30px 10px 40px 10px;
+            scroll-behavior: auto; /* We'll handle smoothness with JS */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            will-change: scroll-position;
+        }
+
+        .projects-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .custom-scrollbar {
+            position: relative;
+            margin-top: 20px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .scrollbar-track {
+            width: 300px;
+            height: 2px;
+            background-color: #333;
+            position: relative;
+            border-radius: 1px;
+        }
+
+        .scrollbar-thumb {
+            width: 70px;
+            height: 30px;
+            background-color: #66FF00;
+            border-radius: 15px;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            cursor: pointer;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            user-select: none;
+            will-change: left;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .scrollbar-thumb:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.5);
+        }
+
+        .scrollbar-thumb:active {
+            background-color: #004085;
+            box-shadow: 0 2px 6px rgba(0, 123, 255, 0.7);
+        }
+
+        .project-card {
+            min-width: 350px;
+            max-width: 350px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+         
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Updated image styling to show full image */
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* This will show the full image without cropping */
+            object-position: center;
+            background: white; /* Optional: add white background if image has transparency */
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .project-card:hover .project-image::after {
+            left: 100%;
+        }
+
+        .project-content {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .project-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .view-details-btn {
+            background: #FFA500;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+            
+        }
+
+        .view-details-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .view-details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .view-details-btn:hover::before {
+            left: 100%;
+        }
+
+        .project-card:nth-child(1) .project-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .project-card:nth-child(2) .project-image {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .project-card:nth-child(3) .project-image {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .project-card:nth-child(4) .project-image {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .project-card:nth-child(5) .project-image {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .project-card:nth-child(6) .project-image {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .scroll-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -10px;
+            gap: 10px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .scroll-arrow {
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(0);
+            }
+            40% {
+                transform: translateX(-3px);
+            }
+            60% {
+                transform: translateX(3px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-card {
+                min-width: 300px;
+                max-width: 300px;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .projects-container {
+                padding: 20px 5px 30px 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-card {
+                min-width: 280px;
+                max-width: 280px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+         h1 span {
+         color: #00e1ff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: #333;
+        }
+        
+        h1 span {
+            color: #00e1ff;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="transform: translateX(-500px) translateY(30px); font-size: 3.5rem;">My <span>Projects</span></h1>
+    <section class="projects-section">
+        <div class="projects-container">
+            <!-- Project Card 1 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="Project_1.png" alt="E-Commerce Website Preview" >
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">YT Comments Sentiment</h3>
+                    <p class="project-description">
+                        A browser-based sentiment analyzer built with Streamlit that fetches YouTube comments via API and visualizes sentiment using VADER.
+                    </p>
+                    <a href="https://github.com/vinoth23042004/YouTube-Comments-Sentiment-Analysis" class="view-details-btn" target="_blank">View Details</a>
+
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="Project_2.png" alt="E-Commerce Website Preview" >
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Arabic Plate Recognition</h3>
+                    <p class="project-description">
+                        A robust Arabic license plate recognition system using YOLOv8 and Tesseract OCR with real-time detection and OpenCV-based visualization.
+                    </p>
+                    <a href="https://github.com/vinoth23042004/Arabic-License-Plate-Detection-and-Recognition" class="view-details-btn" target="_blank">View Details</a>
+
+                </div>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="Project_3.png" alt="E-Commerce Website Preview" >
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">AI Girlfriend</h3>
+                    <p class="project-description">
+                        An AI-powered virtual girlfriend web app with real-time emotion detection, voice chat, anime-style animation, and emotion-driven image generation.
+                    </p>
+                    <a href="https://github.com/vinoth23042004/AI-Girlfriend-with-Emotion-Aware-Animation-and-Chat" class="view-details-btn" target="_blank">View Details</a>
+                </div>
+            </div>
+
+            <!-- Project Card 4 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="Project_4.png" alt="E-Commerce Website Preview" >
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Hand Gesture Presenter</h3>
+                    <p class="project-description">
+                        An AI-powered presentation system built with Python and Flask, enabling seamless slide and media control through a smart web interface.
+                    </p>
+                    <a href="https://github.com/vinoth23042004/Hand-Gesture-Control" class="view-details-btn" target="_blank">View Details</a>
+                </div>
+            </div>
+
+            <!-- Project Card 5 -->
+            <div class="project-card">
+                <div class="project-image">
+                    Coming soon!
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Market Assistance</h3>
+                    <p class="project-description">
+                        Currently in Developing Stage..... 
+                    </p>
+                    <a href="#project5" class="view-details-btn">View Details</a>
+                </div>
+            </div>
+
+            <!-- Project Card 6 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="Project_6.png" alt="E-Commerce Website Preview" >
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">YouTube Sentiment Analyzer using Web Scraping & LLaMA-3</h3>
+                    <p class="project-description">
+                        A Streamlit-based sentiment analysis tool that scrapes YouTube comments, translates them, and analyzes emotions using NVIDIA's LLaMA 3.1 API.
+                    </p>
+                    <a href="https://github.com/vinoth23042004/YouTube-Comment-Sentiment-Analyzer-using-Web-Scraping-and-LLaMA-3?tab=readme-ov-file" class="view-details-btn" target="_blank">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span class="scroll-arrow">←</span>
+            <span>Scroll to explore more projects</span>
+            <span class="scroll-arrow">→</span>
+        </div>
+
+        <!-- Custom Scrollbar -->
+        <div class="custom-scrollbar">
+            <div class="scrollbar-track">
+                <div class="scrollbar-thumb" id="scrollbarThumb"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        class PerfectScrollSync {
+            constructor() {
+                this.container = document.querySelector('.projects-container');
+                this.thumb = document.getElementById('scrollbarThumb');
+                this.track = document.querySelector('.scrollbar-track');
+                
+                // State management
+                this.isDragging = false;
+                this.isScrolling = false;
+                this.currentScrollLeft = 0;
+                this.targetScrollLeft = 0;
+                this.velocity = 0;
+                this.lastTimestamp = 0;
+                
+                // Animation configuration
+                this.smoothness = 0.12; // Higher = smoother but slower
+                this.friction = 0.85;    // Scroll friction
+                this.threshold = 0.1;    // Stop animation threshold
+                
+                // Bind methods
+                this.handleScroll = this.handleScroll.bind(this);
+                this.handleWheel = this.handleWheel.bind(this);
+                this.animate = this.animate.bind(this);
+                this.updateThumbPosition = this.updateThumbPosition.bind(this);
+                
+                this.init();
+            }
+            
+            init() {
+                this.setupEventListeners();
+                this.currentScrollLeft = this.container.scrollLeft;
+                this.targetScrollLeft = this.currentScrollLeft;
+                this.updateThumbPosition();
+                this.startAnimationLoop();
+            }
+            
+            setupEventListeners() {
+                // Container scroll (for direct scrollbar interaction)
+                this.container.addEventListener('scroll', this.handleScroll, { passive: true });
+                
+                // Wheel events for smooth scrolling
+                this.container.addEventListener('wheel', this.handleWheel, { passive: false });
+                
+                // Thumb drag events
+                this.thumb.addEventListener('mousedown', this.handleThumbMouseDown.bind(this));
+                this.thumb.addEventListener('touchstart', this.handleThumbTouchStart.bind(this), { passive: false });
+                
+                // Track click events
+                this.track.addEventListener('click', this.handleTrackClick.bind(this));
+                
+                // Resize handler
+                window.addEventListener('resize', () => {
+                    this.updateThumbPosition();
+                });
+            }
+            
+            handleScroll() {
+                if (!this.isDragging) {
+                    this.currentScrollLeft = this.container.scrollLeft;
+                    this.targetScrollLeft = this.currentScrollLeft;
+                    this.updateThumbPosition();
+                }
+            }
+            
+            handleWheel(e) {
+                e.preventDefault();
+                
+                // Handle both vertical and horizontal wheel input
+                const deltaX = e.deltaX;
+                const deltaY = e.deltaY;
+                
+                // Use the larger delta for smoother experience
+                const delta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
+                
+                // Apply smooth scrolling
+                this.addVelocity(delta * 0.8);
+            }
+            
+            addVelocity(delta) {
+                this.velocity += delta;
+                if (!this.isScrolling) {
+                    this.isScrolling = true;
+                }
+            }
+            
+            handleThumbMouseDown(e) {
+                e.preventDefault();
+                this.startDrag(e.clientX);
+            }
+            
+            handleThumbTouchStart(e) {
+                e.preventDefault();
+                this.startDrag(e.touches[0].clientX);
+            }
+            
+            startDrag(startX) {
+                this.isDragging = true;
+                this.isScrolling = false;
+                this.velocity = 0;
+                
+                const startScrollLeft = this.container.scrollLeft;
+                const startThumbLeft = parseFloat(this.thumb.style.left) || 0;
+                
+                document.body.style.userSelect = 'none';
+                this.thumb.style.cursor = 'grabbing';
+                
+                const handleMove = (clientX) => {
+                    if (!this.isDragging) return;
+                    
+                    const deltaX = clientX - startX;
+                    const maxThumbPos = this.track.clientWidth - this.thumb.clientWidth;
+                    const maxScrollLeft = this.container.scrollWidth - this.container.clientWidth;
+                    
+                    if (maxScrollLeft <= 0) return;
+                    
+                    // Calculate new scroll position
+                    const scrollRatio = deltaX / maxThumbPos;
+                    const newScrollLeft = Math.max(0, Math.min(maxScrollLeft, 
+                        startScrollLeft + (scrollRatio * maxScrollLeft)));
+                    
+                    // Apply immediately for responsive feel
+                    this.container.scrollLeft = newScrollLeft;
+                    this.currentScrollLeft = newScrollLeft;
+                    this.targetScrollLeft = newScrollLeft;
+                    
+                    // Update thumb position
+                    const newThumbPos = Math.max(0, Math.min(maxThumbPos, 
+                        startThumbLeft + deltaX));
+                    this.thumb.style.left = newThumbPos + 'px';
+                };
+                
+                const handleMouseMove = (e) => handleMove(e.clientX);
+                const handleTouchMove = (e) => {
+                    e.preventDefault();
+                    handleMove(e.touches[0].clientX);
+                };
+                
+                const handleEnd = () => {
+                    this.isDragging = false;
+                    document.body.style.userSelect = '';
+                    this.thumb.style.cursor = 'pointer';
+                    
+                    document.removeEventListener('mousemove', handleMouseMove);
+                    document.removeEventListener('touchmove', handleTouchMove);
+                    document.removeEventListener('mouseup', handleEnd);
+                    document.removeEventListener('touchend', handleEnd);
+                    
+                    // Resume smooth positioning
+                    this.updateThumbPosition();
+                };
+                
+                document.addEventListener('mousemove', handleMouseMove);
+                document.addEventListener('touchmove', handleTouchMove, { passive: false });
+                document.addEventListener('mouseup', handleEnd);
+                document.addEventListener('touchend', handleEnd);
+            }
+            
+            handleTrackClick(e) {
+                if (e.target === this.thumb) return;
+                
+                const trackRect = this.track.getBoundingClientRect();
+                const clickX = e.clientX - trackRect.left;
+                const thumbWidth = this.thumb.clientWidth;
+                const maxThumbPos = this.track.clientWidth - thumbWidth;
+                const maxScrollLeft = this.container.scrollWidth - this.container.clientWidth;
+                
+                if (maxScrollLeft <= 0) return;
+                
+                // Calculate target position (center thumb on click)
+                const targetThumbPos = Math.max(0, Math.min(maxThumbPos, clickX - thumbWidth / 2));
+                const scrollRatio = targetThumbPos / maxThumbPos;
+                const targetScroll = scrollRatio * maxScrollLeft;
+                
+                // Smooth scroll to target
+                this.targetScrollLeft = targetScroll;
+                this.isScrolling = true;
+            }
+            
+            updateThumbPosition() {
+                const maxScrollLeft = this.container.scrollWidth - this.container.clientWidth;
+                if (maxScrollLeft <= 0) {
+                    this.thumb.style.left = '0px';
+                    return;
+                }
+                
+                const scrollRatio = this.currentScrollLeft / maxScrollLeft;
+                const maxThumbPos = this.track.clientWidth - this.thumb.clientWidth;
+                const thumbPos = scrollRatio * maxThumbPos;
+                
+                this.thumb.style.left = thumbPos + 'px';
+            }
+            
+            startAnimationLoop() {
+                this.animate();
+            }
+            
+            animate(timestamp = 0) {
+                // Calculate delta time for frame-rate independent animation
+                const deltaTime = timestamp - this.lastTimestamp;
+                this.lastTimestamp = timestamp;
+                
+                // Handle velocity-based scrolling
+                if (Math.abs(this.velocity) > this.threshold) {
+                    this.targetScrollLeft += this.velocity;
+                    this.velocity *= this.friction;
+                    this.isScrolling = true;
+                }
+                
+                // Handle smooth scrolling to target
+                if (this.isScrolling && !this.isDragging) {
+                    const maxScrollLeft = this.container.scrollWidth - this.container.clientWidth;
+                    
+                    // Clamp target scroll position
+                    this.targetScrollLeft = Math.max(0, Math.min(maxScrollLeft, this.targetScrollLeft));
+                    
+                    // Smooth interpolation
+                    const diff = this.targetScrollLeft - this.currentScrollLeft;
+                    
+                    if (Math.abs(diff) > this.threshold) {
+                        this.currentScrollLeft += diff * this.smoothness;
+                        
+                        // Apply to container
+                        this.container.scrollLeft = this.currentScrollLeft;
+                        
+                        // Update thumb position
+                        this.updateThumbPosition();
+                    } else {
+                        // Stop animation when close enough
+                        this.currentScrollLeft = this.targetScrollLeft;
+                        this.container.scrollLeft = this.currentScrollLeft;
+                        this.isScrolling = false;
+                        this.velocity = 0;
+                        this.updateThumbPosition();
+                    }
+                }
+                
+                // Continue animation loop
+                requestAnimationFrame(this.animate);
+            }
+        }
+        
+        // Initialize perfect scroll sync when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            new PerfectScrollSync();
+        });
+        
+        // Fallback initialization
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                new PerfectScrollSync();
+            });
+        } else {
+            new PerfectScrollSync();
+        }
+    </script>
+</body>
+</html>
