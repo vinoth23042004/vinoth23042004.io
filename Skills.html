@@ -17,7 +17,7 @@
             padding: 2rem;
             font-family: 'Arial', sans-serif; 
             
-            transform: translateX(-165px) translateY(-65px) scale(0.95); /* Left and right  & Up and down*/ /* Scales to 80% of original size */
+            position: fixed;
 
         }
      
@@ -222,7 +222,7 @@
         /* Styling for the container-1 section */
         .container-1 {
             position: absolute;
-            right: -10px; /* Position it to the right */
+            right: -325px; /* Position it to the right */
             top: -570px; /* Adjust this value to move it upward */
             width: 300px;
             padding: 20px;
@@ -284,10 +284,15 @@
             margin-bottom: 15px;
             color: #444;
         }
+
+        .main-wrapper {
+    transform: translateX(150px) translateY(-65px) scale(0.95);
+}
         
     </style>
 </head>
 <body>
+    < <div class="main-wrapper">
     <div class="container">
         <h1 style="transform: translateX(-280px) translateY(30px)">My <span>Skills</span></h1>
 
@@ -443,6 +448,6 @@
         </div>
     </div>
 </div>
-  
+</div>  
 </body>
 </html>
